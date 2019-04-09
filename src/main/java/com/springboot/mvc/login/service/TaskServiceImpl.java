@@ -2,32 +2,72 @@ package com.springboot.mvc.login.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.springboot.mvc.login.model.Project;
 import com.springboot.mvc.login.model.Task;
+import com.springboot.mvc.login.repository.ProjectRepository;
+import com.springboot.mvc.login.repository.TaskRepository;
 
 public class TaskServiceImpl implements TaskService {
 
+	@Autowired
+	TaskRepository taskrepository;
+	@Autowired
+	ProjectRepository projectrepository;
+	
 	@Override
 	public void saveTask(Task task) {
 		// TODO Auto-generated method stub
-		
+		taskrepository.save(task);
 	}
 
 	@Override
 	public void deleteTask(long taskid) {
 		// TODO Auto-generated method stub
-		
+		taskrepository.deleteById(taskid);
 	}
 
-	@Override
-	public void updateTask(long taskid) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void updateTask(long taskid) {
+//		// TODO Auto-generated method stub
+////		Task task = taskrepository.findById(taskid);
+//	}
 
 	@Override
 	public List<Task> findAllTasks() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updateTaskByProject(long projectid) {
+		// TODO Auto-generated method stub
+		taskrepository.updateTaskByProject(projectrepository.findById(projectid).get());
+	}
+
+	@Override
+	public List<Task> sortTaskByStartDate(long projectid) {
+		// TODO Auto-generated method stub
+		return taskrepository.findByProjectOrderByTaskstartdate(projectrepository.findById(projectid).get());
+	}
+
+	@Override
+	public List<Task> sortTaskByEndDate(long projectid) {
+		// TODO Auto-generated method stub
+		return taskrepository.findByProjectOrderByTaskenddate(projectrepository.findById(projectid).get());
+	}
+
+	@Override
+	public List<Task> sortTaskByTaskPriority(long projectid) {
+		// TODO Auto-generated method stub
+		return taskrepository.findByProjectOrderByTaskpriority(projectrepository.findById(projectid).get());
+	}
+
+	@Override
+	public List<Task> sortTaskByTaskStatus(long projectid) {
+		// TODO Auto-generated method stub
+		return taskrepository.findByProjectOrderByTaskstatus(projectrepository.findById(projectid).get());
 	}
 
 }

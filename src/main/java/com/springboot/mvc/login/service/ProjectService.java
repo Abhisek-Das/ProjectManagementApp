@@ -8,7 +8,7 @@ public interface ProjectService {
 	public void saveProject(Project project);
 	public void deleteProject(long projectid);
 
-	public Project findByProjectId(long parentid);
+	public Project findByProjectId(long projectid);
 	public Project findByProjectName(String projectname);
 	public List<Project> findAllProjects();
 	
