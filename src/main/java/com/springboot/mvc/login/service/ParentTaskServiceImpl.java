@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springboot.mvc.login.model.ParentTask;
 import com.springboot.mvc.login.repository.ParentTaskRepository;
 
+@Service
 public class ParentTaskServiceImpl implements ParentTaskService {
 
 	@Autowired

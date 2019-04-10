@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.springboot.mvc.login.model.Project;
 import com.springboot.mvc.login.repository.ProjectRepository;
 
+@Service
 public class ProjectServiceImpl implements ProjectService{
 
 	@Autowired
