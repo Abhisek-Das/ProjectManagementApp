@@ -1,6 +1,8 @@
 package com.springboot.mvc.login.service;
 
 import java.util.List;
+
+import com.springboot.mvc.login.model.Project;
 import com.springboot.mvc.login.model.User;
 
 
@@ -13,6 +15,7 @@ public interface UserService {
 	
 	public List<User> findAllUsers();
 	public User findByUserId(long userid);
+	public User findByProject(Project project);
 	
 	public List<User> sortByUserFirstNameAsc();
 	public List<User> sortByUserLastNameAsc();

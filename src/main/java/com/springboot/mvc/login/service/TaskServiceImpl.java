@@ -1,6 +1,7 @@
 package com.springboot.mvc.login.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,13 +40,13 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<Task> findAllTasks() {
 		// TODO Auto-generated method stub
-		return null;
+		return taskrepository.findAll();
 	}
 
 	@Override
-	public void updateTaskByProject(long projectid) {
+	public int updateTaskByProject(long projectid) {
 		// TODO Auto-generated method stub
-		taskrepository.updateTaskByProject(projectrepository.findById(projectid).get());
+		return taskrepository.updateTaskByProject(projectrepository.findById(projectid).get());
 	}
 
 	@Override
@@ -70,6 +71,25 @@ public class TaskServiceImpl implements TaskService {
 	public List<Task> sortTaskByTaskStatus(long projectid) {
 		// TODO Auto-generated method stub
 		return taskrepository.findByProjectOrderByTaskstatus(projectrepository.findById(projectid).get());
+	}
+
+	@Override
+	public Task findByTaskId(long taskid) {
+		// TODO Auto-generated method stub
+		Optional<Task> task;
+		task = taskrepository.findById(taskid);
+		if (task.isPresent()) {
+			return task.get();
+		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	public int countByProject(Project project) {
+		// TODO Auto-generated method stub
+		return taskrepository.countByProject(project);
 	}
 
 }

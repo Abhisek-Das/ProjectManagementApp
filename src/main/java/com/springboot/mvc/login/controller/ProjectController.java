@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.mvc.login.model.ErrorBean;
 import com.springboot.mvc.login.model.Project;
+import com.springboot.mvc.login.model.ProjectInfo;
+import com.springboot.mvc.login.service.ProjectInfoService;
 import com.springboot.mvc.login.service.ProjectService;
 
 @RestController
@@ -27,6 +29,8 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectService projectService;
+	@Autowired
+	ProjectInfoService projectInfoService;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -127,13 +131,13 @@ public class ProjectController {
 	@RequestMapping(value="/sortProjectByStartDate", method=RequestMethod.GET)
 	public ResponseEntity<?> sortProjectByStartDate(){
 		
-		List<Project> projectList = projectService.sortByProjectStartdateAsc();
+		List<ProjectInfo> projectInfoList = projectInfoService.sortProjectByStartDate();
 		
-		if (projectList.isEmpty()) {
+		if (projectInfoList.isEmpty()) {
 			return new ResponseEntity<ErrorBean> (new ErrorBean("Project List is empty"), HttpStatus.NO_CONTENT); 
 		}
 		else {
-			return new ResponseEntity<List<Project>> (projectList, HttpStatus.OK);
+			return new ResponseEntity<List<ProjectInfo>> (projectInfoList, HttpStatus.OK);
 		}
 		
 	}
@@ -141,13 +145,13 @@ public class ProjectController {
 	@RequestMapping(value="/sortProjectByEndDate", method=RequestMethod.GET)
 	public ResponseEntity<?> sortProjectByEndDate(){
 		
-		List<Project> projectList = projectService.sortByProjectEnddateAsc();
+		List<ProjectInfo> projectInfoList = projectInfoService.sortProjectByEndDate();
 		
-		if (projectList.isEmpty()) {
+		if (projectInfoList.isEmpty()) {
 			return new ResponseEntity<ErrorBean> (new ErrorBean("Project List is empty"), HttpStatus.NO_CONTENT); 
 		}
 		else {
-			return new ResponseEntity<List<Project>> (projectList, HttpStatus.OK);
+			return new ResponseEntity<List<ProjectInfo>> (projectInfoList, HttpStatus.OK);
 		}
 		
 	}
@@ -155,13 +159,41 @@ public class ProjectController {
 	@RequestMapping(value="/sortProjectByPriority", method=RequestMethod.GET)
 	public ResponseEntity<?> sortProjectByPriority(){
 		
-		List<Project> projectList = projectService.sortByProjectPriorityAsc();
+		List<ProjectInfo> projectInfoList = projectInfoService.sortProjectByPriority();
 		
-		if (projectList.isEmpty()) {
+		if (projectInfoList.isEmpty()) {
 			return new ResponseEntity<ErrorBean> (new ErrorBean("Project List is empty"), HttpStatus.NO_CONTENT); 
 		}
 		else {
-			return new ResponseEntity<List<Project>> (projectList, HttpStatus.OK);
+			return new ResponseEntity<List<ProjectInfo>> (projectInfoList, HttpStatus.OK);
+		}
+		
+	}
+	
+	@RequestMapping(value="/sortProjectByCompleted", method=RequestMethod.GET)
+	public ResponseEntity<?> sortProjectByCompleted(){
+		
+		List<ProjectInfo> projectInfoList = projectInfoService.sortProjectByCompleted();
+		
+		if (projectInfoList.isEmpty()) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("Project List is empty"), HttpStatus.NO_CONTENT); 
+		}
+		else {
+			return new ResponseEntity<List<ProjectInfo>> (projectInfoList, HttpStatus.OK);
+		}
+		
+	}
+	
+	@RequestMapping(value="/viewProjectInfo", method=RequestMethod.GET)
+	public ResponseEntity<?> viewProjectInfo(){
+		
+		List<ProjectInfo> projectInfoList = projectInfoService.findAll();
+		
+		if (projectInfoList.isEmpty()) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("Project Info List is empty"), HttpStatus.NO_CONTENT); 
+		}
+		else {
+			return new ResponseEntity<List<ProjectInfo>> (projectInfoList, HttpStatus.OK);
 		}
 		
 	}

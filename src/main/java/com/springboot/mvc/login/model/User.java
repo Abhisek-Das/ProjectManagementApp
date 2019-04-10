@@ -96,5 +96,11 @@ public class User {
 	public void setTask(Task task) {
 		this.task = task;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", userfirstname=" + userfirstname + ", userlastname=" + userlastname
+				+ ", useremployeeid=" + useremployeeid + ", project=" + project + ", task=" + task + "]";
+	}
 	
 	}

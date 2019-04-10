@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.springboot.mvc.login.model.Project;
 import com.springboot.mvc.login.model.User;
 import com.springboot.mvc.login.repository.UserRepository;
 
@@ -85,6 +86,12 @@ public class UserServiceImpl implements UserService {
 	private Sort orderByUserEmployeeIDAsc() {
 		// TODO Auto-generated method stub
 		return new Sort(Sort.Direction.ASC, "useremployeeid");
+	}
+
+	@Override
+	public User findByProject(Project project) {
+		// TODO Auto-generated method stub
+		return userrepository.findByProject(project);
 	}
 
 }
