@@ -16,6 +16,7 @@ public interface UserService {
 	public List<User> findAllUsers();
 	public User findByUserId(long userid);
 	public User findByProject(Project project);
+	public List<User> findByUseremployeeid(int employeeid);
 	
 	public List<User> sortByUserFirstNameAsc();
 	public List<User> sortByUserLastNameAsc();

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import com.springboot.mvc.login.service.UserService;
 
 @RestController
 @RequestMapping(value="/api/user")
+@CrossOrigin
 public class UserController {
 	
 	@Autowired
@@ -87,6 +89,20 @@ public class UserController {
 		}
 		else {
 			return new ResponseEntity<User> (user, HttpStatus.OK);
+			
+		}
+		
+	}
+	
+	@RequestMapping(value="/viewUserByEmployeeId/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> viewUserByEmployeeId(@PathVariable("id") int id){
+		List<User> user = userservice.findByUseremployeeid(id);
+		
+		if (user==null) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("User not found"), HttpStatus.NO_CONTENT);
+		}
+		else {
+			return new ResponseEntity<List<User>> (user, HttpStatus.OK);
 			
 		}
 		

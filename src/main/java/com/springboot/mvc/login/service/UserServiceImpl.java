@@ -94,4 +94,11 @@ public class UserServiceImpl implements UserService {
 		return userrepository.findByProject(project);
 	}
 
+	@Override
+	public List<User> findByUseremployeeid(int employeeid) {
+		// TODO Auto-generated method stub
+		return userrepository.findByUseremployeeid(employeeid);
+		
+	}
+
 }
