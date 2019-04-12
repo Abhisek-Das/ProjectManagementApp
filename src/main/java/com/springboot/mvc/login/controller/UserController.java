@@ -33,7 +33,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/deleteUser/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteUser/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<?> deleteUser(@PathVariable("id") long id){
 		User user = userservice.findByUserId(id);
 		
