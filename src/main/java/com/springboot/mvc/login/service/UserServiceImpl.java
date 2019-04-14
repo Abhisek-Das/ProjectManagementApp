@@ -101,4 +101,11 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public int updateUserByProjectID(long projectid) {
+		// TODO Auto-generated method stub
+		return userrepository.updateUserByProjectid(projectid);
+	
+	}
+
 }

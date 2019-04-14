@@ -146,5 +146,21 @@ public class UserController {
 		}
 		
 	}
+	
+
+	@RequestMapping(value="/updateUserByProjectid/{projectid}", method=RequestMethod.PUT)
+	public ResponseEntity<?> updateUserByProjectid(@PathVariable("projectid") long projectid){
+		int usercount = userservice.updateUserByProjectID(projectid);
+		
+		if (usercount==0) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("User not found"), HttpStatus.NO_CONTENT);
+		}
+		else {
+			
+			return new ResponseEntity<String> (Integer.toString(usercount), HttpStatus.OK);
+			
+		}
+		
+	}
 
 }

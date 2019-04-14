@@ -12,6 +12,7 @@ public interface UserService {
 	public void saveUser(User user);
 	public void deleteUser(long userid);
 	public void updateUser(long userid);
+	public int updateUserByProjectID(long projectid);
 	
 	public List<User> findAllUsers();
 	public User findByUserId(long userid);
