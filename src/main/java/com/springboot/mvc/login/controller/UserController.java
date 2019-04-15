@@ -162,5 +162,34 @@ public class UserController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/viewUserByTaskId/{taskid}", method=RequestMethod.GET)
+	public ResponseEntity<?> viewUserByTaskId(@PathVariable("taskid") long taskid){
+		User user = userservice.findByTask(taskid);
+		
+		if (user==null) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("User not found"), HttpStatus.NO_CONTENT);
+		}
+		else {
+			return new ResponseEntity<User> (user, HttpStatus.OK);
+			
+		}
+		
+	}
+	
+	@RequestMapping(value="/viewUserByProjectId/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> viewUserByProjectId(@PathVariable("id") long id){
+		User user = userservice.findByProjectId(id);
+		
+		if (user==null) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("User not found"), HttpStatus.NO_CONTENT);
+		}
+		else {
+			return new ResponseEntity<User> (user, HttpStatus.OK);
+			
+		}
+		
+	}
+	
 
 }

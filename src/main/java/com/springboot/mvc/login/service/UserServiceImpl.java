@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.mvc.login.model.Project;
 import com.springboot.mvc.login.model.User;
+import com.springboot.mvc.login.repository.ProjectRepository;
+import com.springboot.mvc.login.repository.TaskRepository;
 import com.springboot.mvc.login.repository.UserRepository;
 
 @Service
@@ -16,6 +18,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userrepository;
+	@Autowired
+	TaskRepository taskrepository;
+	@Autowired
+	ProjectRepository projectrepository;
 	
 	@Override
 	public void saveUser(User user) {
@@ -93,6 +99,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userrepository.findByProject(project);
 	}
+	
+	@Override
+	public User findByProjectId(long projectID) {
+		// TODO Auto-generated method stub
+		return userrepository.findByProject(projectrepository.findById(projectID).get());
+	}
 
 	@Override
 	public List<User> findByUseremployeeid(int employeeid) {
@@ -106,6 +118,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userrepository.updateUserByProjectid(projectid);
 	
+	}
+
+	@Override
+	public User findByTask(long taskid) {
+		// TODO Auto-generated method stub
+		return userrepository.findByTask(taskrepository.findById(taskid).get());
 	}
 
 }

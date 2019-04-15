@@ -92,4 +92,10 @@ public class TaskServiceImpl implements TaskService {
 		return taskrepository.countByProject(project);
 	}
 
+	@Override
+	public List<Task> findAllTasksByProject(long projectid) {
+		// TODO Auto-generated method stub
+		return taskrepository.findByProject(projectrepository.findById(projectid).get());
+	}
+
 }

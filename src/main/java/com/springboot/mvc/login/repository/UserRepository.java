@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.mvc.login.model.Project;
+import com.springboot.mvc.login.model.Task;
 import com.springboot.mvc.login.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -18,5 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	List<User> findByUseremployeeid(int useremployeeid);
 	User findByProject(Project project);
+	User findByTask(Task task);
 
 }

@@ -13,6 +13,7 @@ public interface TaskService {
 	public int updateTaskByProject(long projectid);
 	
 	public List<Task> findAllTasks();
+	public List<Task> findAllTasksByProject(long projectid);
 	public Task findByTaskId(long taskid);
 	public List<Task> sortTaskByStartDate(long projectid);
 	public List<Task> sortTaskByEndDate(long projectid);

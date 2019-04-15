@@ -158,5 +158,36 @@ public class TaskController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/viewTaskByProject/{projectid}", method=RequestMethod.GET)
+	public ResponseEntity<?> findAllTasksByProject(@PathVariable("projectid") long projectid){
+		
+		List<Task> taskList = taskservice.findAllTasksByProject(projectid);
+		
+		if (taskList.isEmpty()) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("Task List is empty"), HttpStatus.NO_CONTENT); 
+		}
+		else {
+			return new ResponseEntity<List<Task>> (taskList, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value="/updateTaskByID/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<?> updateTaskByID(@PathVariable long id, @RequestBody Task task){
+		
+		Task tasktemp = taskservice.findByTaskId(id); 
+		
+		if (tasktemp==null) {
+			return new ResponseEntity<ErrorBean> (new ErrorBean("Task List is empty"), HttpStatus.NO_CONTENT); 
+		}
+		else {
+			task.setTaskid(id);
+			taskservice.saveTask(task);
+			return new ResponseEntity<Task> (task, HttpStatus.OK);
+		}
+		
+		
+		
+	}
 
 }
