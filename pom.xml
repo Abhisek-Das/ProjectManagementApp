@@ -11,7 +11,7 @@
 	<groupId>com.abhi.ProjectManagementApp</groupId>
 	<artifactId>ProjectManagementApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ProjectManagementApp</name>
 	<description>Demo project for Spring Boot</description>
 
